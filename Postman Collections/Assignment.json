@@ -270,44 +270,44 @@
 	],
 	"variable": [
 		{
-			"id": "4f7e5459-3e11-40cb-8e9a-f672532195ab",
+			"id": "05fa0dca-4303-4e8b-a6d6-680fe958b211",
 			"key": "Token",
 			"value": ""
 		},
 		{
-			"id": "6b09504e-42c3-4737-a0f6-3690bead3d13",
+			"id": "5fd89020-43bb-48f0-a99c-e27446460b70",
 			"key": "phoneNumber",
 			"value": ""
 		},
 		{
-			"id": "92952dea-0d01-4c0e-b18c-5e67824aeedf",
+			"id": "69e4ee2d-82fa-43f3-8ab2-ebe5012e06e5",
 			"key": "userId",
 			"value": ""
 		},
 		{
-			"id": "f2c95329-0442-425e-9295-a73f63801b4a",
+			"id": "0b67035d-c6c0-47a3-b2dd-78d5b01639da",
 			"key": "Name",
 			"value": ""
 		},
 		{
-			"id": "eb476824-6d52-4116-97f6-a2c25cdda02f",
+			"id": "751f2307-697a-4d23-ab44-53b9ade9c228",
 			"key": "Email",
 			"value": ""
 		},
 		{
-			"id": "cc53ba77-9bec-4715-9b21-488a078be7d5",
+			"id": "278b47c0-70d7-4e01-bfb9-90ba52915e8f",
 			"key": "baseURL",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d690ccc3-7235-4af2-a09b-b78691b1c5cb",
+			"id": "cfc87c5e-2b32-4c0c-b0e4-5c67901dd0ee",
 			"key": "parnetKEY",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "0df95f70-d188-40ea-b716-14bacfca9fad",
+			"id": "bcea3fdd-4d07-498d-9b29-9c22fbe21eb0",
 			"key": "phonenumber",
 			"value": ""
 		}
