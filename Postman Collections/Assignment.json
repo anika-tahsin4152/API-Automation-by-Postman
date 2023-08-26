@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "abb0c05d-a3b8-47d5-97f7-b714f132e29a",
+		"name": "Dmoney-Practice(class)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User-Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b5aec79-b314-4a46-aad6-1c9d42eaa094",
+						"exec": [
+							"var jdata = pm.response.json();\r",
+							"var Token = jdata.token;\r",
+							"\r",
+							"pm.collectionVariables.set(\"Token\", Token);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "1cb9b4e5-b898-4008-9ecf-6b47fe237f51",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"salman@roadtocareer.net\",\r\n    \"password\":\"1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "User-Login Wrong Credentials",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b5aec79-b314-4a46-aad6-1c9d42eaa094",
+						"exec": [
+							"pm.test(\"check if user can't login with invalid creds\",()=>{\r",
+							"    var jdata = pm.response.json();\r",
+							"\r",
+							"    pm.expect(\"Password incorrect\").contains(jdata.message)\r",
+							"\r",
+							"})\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "874fe7ec-24aa-48af-bf5e-cbc978e25083",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"salman@roadtocareer.net\",\r\n    \"password\":\"12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "User List",
+			"id": "feae7b04-e7a5-4816-8f16-aea81eeb8144",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{baseURL}}/user/list"
+			},
+			"response": []
+		},
+		{
+			"name": "Search User",
+			"id": "2de0c39c-5871-433e-bd77-253d58bc23d7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{baseURL}}/user/search/id/22715"
+			},
+			"response": []
+		},
+		{
+			"name": "Search User for invalid user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d0fa474-d0b0-454c-ab48-619fe1a16bc7",
+						"exec": [
+							"// pm.test(\"Status code is 404\", function () {\r",
+							"//     pm.response.to.have.status(404);\r",
+							"// });\r",
+							"pm.test(\"User can't get data if user not found \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).contains(\"User not found\");\r",
+							"});\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "47c296b3-e501-4056-b39b-820fdaf63a28",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{baseURL}}/user/search/id/22715555"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bc823931-f905-4e44-a42d-a68a89cad5b3",
+						"exec": [
+							"var prefix = \"01\"\r",
+							"var randomNumber = _.random(100000000, 999999999)\r",
+							"var phoneNumber = prefix + randomNumber;\r",
+							"\r",
+							"pm.collectionVariables.set(\"phoneNumber\", phoneNumber);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2be80871-ea13-4008-a0c8-56ec68a1ceff",
+						"exec": [
+							"var jdata = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check if user is created \", function () {\r",
+							"    pm.expect(jdata.message).contains(\"User created\");\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"userId\", jdata.user?.id);\r",
+							"pm.collectionVariables.set(\"Name\", jdata.user?.name);\r",
+							"pm.collectionVariables.set(\"Email\", jdata.user?.email);\r",
+							"pm.collectionVariables.set(\"phonenumber\", jdata.user?.phonenumber);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "428fdf45-d062-4fd9-9a98-b36693b6cfb0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-SECRET-KEY",
+						"value": "ROADTOSDET",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"{{$randomFullName}}\",\r\n    \"email\":\"{{$randomEmail}}\",\r\n    \"password\":\"{{$randomPassword}}\",\r\n    \"phone_number\":\"{{phoneNumber}}\",\r\n    \"nid\":\"123456789\",\r\n    \"role\":\"Customer\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/user/create"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a4ce24ba-bfc4-4a61-9681-9e43bc1effe8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "aadfedf3-be0b-4fd5-ae05-bbc584d1f31d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "4f7e5459-3e11-40cb-8e9a-f672532195ab",
+			"key": "Token",
+			"value": ""
+		},
+		{
+			"id": "6b09504e-42c3-4737-a0f6-3690bead3d13",
+			"key": "phoneNumber",
+			"value": ""
+		},
+		{
+			"id": "92952dea-0d01-4c0e-b18c-5e67824aeedf",
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"id": "f2c95329-0442-425e-9295-a73f63801b4a",
+			"key": "Name",
+			"value": ""
+		},
+		{
+			"id": "eb476824-6d52-4116-97f6-a2c25cdda02f",
+			"key": "Email",
+			"value": ""
+		},
+		{
+			"id": "cc53ba77-9bec-4715-9b21-488a078be7d5",
+			"key": "baseURL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "d690ccc3-7235-4af2-a09b-b78691b1c5cb",
+			"key": "parnetKEY",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "0df95f70-d188-40ea-b716-14bacfca9fad",
+			"key": "phonenumber",
+			"value": ""
+		}
+	]
+}
