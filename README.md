@@ -17,3 +17,4 @@
 - ``` npm test ```
 
 ## API Documentation:
+- https://documenter.getpostman.com/view/29168455/2s9Y5csfW9
