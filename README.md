@@ -1,1 +1,1 @@
-# SDET_project
+# Postman_Collection
